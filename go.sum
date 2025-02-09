@@ -1,5 +1,9 @@
 github.com/FedosOnGIT/TracerLib v0.0.0-20250209095229-cadb7b919057 h1:CVOpvv0dtx6KikxGeBjkxaPi8hNLC3algupjfA6RD5s=
 github.com/FedosOnGIT/TracerLib v0.0.0-20250209095229-cadb7b919057/go.mod h1:sVDL5JJWjCuahMz47n6En7DFHFZF4AhBIo+wIcZSNnY=
+github.com/FedosOnGIT/TracerLib v0.0.0-20250209143002-f6f2f4144dd5 h1:emnTX7DMAvAu3Zqf0w/NFkEeWOwN/q27xrrrGVWlG2M=
+github.com/FedosOnGIT/TracerLib v0.0.0-20250209143002-f6f2f4144dd5/go.mod h1:sVDL5JJWjCuahMz47n6En7DFHFZF4AhBIo+wIcZSNnY=
+github.com/FedosOnGIT/TracerLib v0.0.0-20250209145826-091a60d4dea2 h1:LiyjS9xFDbIHxU06dIwbMhzA/4zmGi323vbFrwkG2ek=
+github.com/FedosOnGIT/TracerLib v0.0.0-20250209145826-091a60d4dea2/go.mod h1:sVDL5JJWjCuahMz47n6En7DFHFZF4AhBIo+wIcZSNnY=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

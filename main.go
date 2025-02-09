@@ -2,6 +2,7 @@ package main
 
 import (
 	"TracerExample/handler"
+	"TracerExample/scheduler"
 	"fmt"
 	"github.com/FedosOnGIT/TracerLib/uploadBatch"
 	"go.uber.org/zap/zapcore"
@@ -16,7 +17,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	logger, _ := uploadBatch.New(file, zapcore.WarnLevel, uploadBatch.Configuration{
+	logger, _ := uploadBatch.New(file, zapcore.WarnLevel, zapcore.ErrorLevel, uploadBatch.Configuration{
 		Module:      "Tracer",
 		Service:     "Example",
 		OsVersion:   "5.15.62-13.el7.x86_64",
@@ -28,6 +29,8 @@ func main() {
 		Environment: "test",
 		DeviceID:    "123",
 	})
+
+	go scheduler.StartBackgroundTask(logger)
 
 	tracerHandler := handler.New(logger)
 	http.HandleFunc("/warn", tracerHandler.HandleWithWarn)

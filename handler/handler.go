@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"TracerExample/internal"
 	"github.com/FedosOnGIT/TracerLib/uploadBatch"
 	"net/http"
 )
@@ -91,7 +92,8 @@ func (handler *TracerHandler) HandleWithErrorf(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	logger.Errorf("Error. Parameter: %s", queryParam)
+	err := internal.FailingFunction(logger)
+	logger.Errorf("Error: %v. Parameter: %s", err, queryParam)
 
 	w.WriteHeader(http.StatusInternalServerError)
 }

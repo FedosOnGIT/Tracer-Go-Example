@@ -1,0 +1,21 @@
+services:
+  tracer_app:
+    build: .
+    ports:
+      - "8086:8086"
+    container_name: tracer_app
+    volumes:
+      - logs_volume:/app/logs
+
+  vector:
+    image: timberio/vector:0.44.0-debian
+    container_name: vector
+    depends_on:
+      - tracer_app
+    volumes:
+      - logs_volume:/app/logs:ro
+      - ./vector.toml:/etc/vector/vector.toml:ro
+    command: ["--config", "/etc/vector/vector.toml"]
+
+volumes:
+  logs_volume:

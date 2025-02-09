@@ -1,0 +1,35 @@
+[sources.tracer_errors]
+type = "file"
+include = ["/app/logs/tracer.log"]  # Make sure it matches the path used by your Go app
+
+[transforms.flatten_tracer_errors]
+type = "remap"
+inputs = ["tracer_errors"]
+source = '''
+  . = parse_json!(.message)
+  if exists(.uploadBean.stack) {
+    .stackTrace = .uploadBean.stack
+    del(.uploadBean.stack)
+  }
+  if exists(.uploadBean.properties.message) {
+    .uploadBean.crashIdSourceField = "message"
+  }
+  if exists(.uploadBean.timestamp) {
+    del(.uploadBean.timestamp)
+  }
+'''
+
+[sinks.errors_to_tracer]
+type = "http"
+inputs = ["flatten_tracer_errors"]
+uri = "https://api-hprof.odkl.ru/api/crash/uploadBatch?crashToken=UuxdYYy9L2m9pSy2Rfn22bVSDoctYcxLl3b14stmSxr&compressType=ZSTD"
+method = "post"
+healthcheck.enabled = false
+encoding.codec = "json"
+batch.max_events = 100
+batch.timeout_secs = 10
+buffer.type = "memory"
+buffer.max_events = 1000
+request.rate_limit_duration_secs = 1
+request.rate_limit_num = 20
+compression = "zstd"
